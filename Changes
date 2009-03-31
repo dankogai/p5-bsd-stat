@@ -1,8 +1,10 @@
 #
 # $Id: Changes,v 1.21 2002/01/28 15:54:38 dankogai Exp dankogai $
 #
-
-Revision history for Perl extension BSD::stat.
+# Revision history for Perl extension BSD::stat.
+$Revision: 2.33 $ $Date: 2009/03/25 07:55:57 $
+! stat.pm
+  POD fixes
 
 1.21 2001.01.29
      ! stat.xs

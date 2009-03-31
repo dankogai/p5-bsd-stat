@@ -341,10 +341,6 @@ that does not appear in "perldoc perlapi" and such.
 
 Very BSD specific.  It will not work on any other platform.
 
-=head1 AUTHOR
-
-Dan Kogai E<lt>dankogai@dan.co.jpE<gt>
-
 =head1 SEE ALSO
 
 L<chflags(2)>
@@ -353,11 +349,43 @@ L<File::stat>
 L<perldoc -f -x>
 L<perdoc -f stat>
 
-=head1 COPYRIGHT
+=head1 SUPPORT
 
-Copyright 2001 Dan Kogai <dankogai@dan.co.jp>
+You can find documentation for this module with the perldoc command.
 
-This library is free software; you can redistribute it
-and/or modify it under the same terms as Perl itself.
+    perldoc BSD::stat
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=BSD-stat>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/BSD-stat>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/BSD-stat>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/BSD-stat/>
+
+=back
+
+=head1 AUTHOR
+
+Dan Kogai E<lt>dankogai@dan.co.jpE<gt>
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2001-2009 Dan Kogai, all rights reserved.
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
 
 =cut
