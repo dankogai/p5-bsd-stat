@@ -343,11 +343,11 @@ Very BSD specific.  It will not work on any other platform.
 
 =head1 SEE ALSO
 
-L<chflags(2)>
-L<stat(2)>
+L<chflags/2>
+L<stat/2>
 L<File::stat>
-L<perldoc -f -x>
-L<perdoc -f stat>
+L<perlfunc/-x>
+L<perlfunc/stat>
 
 =head1 SUPPORT
 
