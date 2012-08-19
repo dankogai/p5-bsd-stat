@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.20 2002/01/26 04:17:06 dankogai Exp $
+# $Id: Makefile.PL,v 1.30 2012/08/19 15:36:31 dankogai Exp $
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
@@ -15,4 +15,5 @@ WriteMakefile(
     'INC'		=> '', # e.g., '-I/usr/include/other'
 	# Un-comment this if you add C files to link with later:
     # 'OBJECT'		=> '$(O_FILES)', # link all the C files too
+    LICENSE       => 'perl',
 );

@@ -1,10 +1,17 @@
 #
-# $Id: Changes,v 1.21 2002/01/28 15:54:38 dankogai Exp dankogai $
+# $Id: Changes,v 1.31 2012/08/19 15:46:15 dankogai Exp dankogai $
 #
 # Revision history for Perl extension BSD::stat.
-$Revision: 2.33 $ $Date: 2009/03/25 07:55:57 $
-! stat.pm
-  POD fixes
+$Revision: 1.31 $ $Date: 2012/08/19 15:46:15 $
+! stat.pm README
+  Document fixes
+
+1.30 2012/08/19 15:36:31
+! stat.pm stat.xs
++ t/utimes.t
+  utimes() and lutimes() added
+! Makefile.PL
+  LICENSE => 'perl', # explicitly stated
 
 1.21 2001.01.29
      ! stat.xs

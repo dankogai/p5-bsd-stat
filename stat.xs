@@ -1,5 +1,5 @@
 /*
- * $Id: stat.xs,v 1.21 2002/01/28 15:54:38 dankogai Exp dankogai $
+ * $Id: stat.xs,v 1.30 2012/08/19 15:36:31 dankogai Exp $
  */
 
 #include "EXTERN.h"
@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 /*
  * Perl prior to 5.6.0 lacks newSVuv()
@@ -123,6 +124,39 @@ xs_chflags(char *path, int flags){
     return setbang(err);
 }
 
+static int
+xs_utimes(double atime, double mtime, char *path){
+    struct timeval times[2];
+    times[0].tv_sec = (int)atime;
+    times[0].tv_usec = (int)((atime - times[0].tv_sec) * 1e6);
+    times[1].tv_sec = (int)mtime;
+    times[1].tv_usec = (int)((mtime - times[1].tv_sec) * 1e6);
+    int err = utimes(path, times);
+    return setbang(err);
+}
+
+static int
+xs_lutimes(double atime, double mtime, char *path){
+    struct timeval times[2];
+    times[0].tv_sec = (int)atime;
+    times[0].tv_usec = (int)((atime - times[0].tv_sec) * 1e6);
+    times[1].tv_sec = (int)mtime;
+    times[1].tv_usec = (int)((mtime - times[1].tv_sec) * 1e6);
+    int err = lutimes(path, times);
+    return setbang(err);
+}
+
+static int
+xs_futimes(double atime, double mtime, int fd){
+    struct timeval times[2];
+    times[0].tv_sec = (int)atime;
+    times[0].tv_usec = (int)((atime - times[0].tv_sec) * 1e6);
+    times[1].tv_sec = (int)mtime;
+    times[1].tv_usec = (int)((mtime - times[1].tv_sec) * 1e6);
+    int err = futimes(fd, times);
+    return setbang(err);
+}
+
 /* */
 
 MODULE = BSD::stat		PACKAGE = BSD::stat
@@ -160,5 +194,35 @@ xs_chflags(path, flags)
     int    flags;
     CODE:
 	RETVAL = xs_chflags(path, flags);
+    OUTPUT:
+	RETVAL
+
+int
+xs_utimes(atime, mtime, path)
+    double atime;
+    double mtime;
+    char * path;
+    CODE:
+        RETVAL = xs_utimes(atime, mtime, path);
+    OUTPUT:
+	RETVAL
+
+int
+xs_lutimes(atime, mtime, path)
+    double atime;
+    double mtime;
+    char * path;
+    CODE:
+        RETVAL = xs_lutimes(atime, mtime, path);
+    OUTPUT:
+	RETVAL
+
+int
+xs_futimes(atime, mtime, fd)
+    double atime;
+    double mtime;
+    int fd;
+    CODE:
+        RETVAL = xs_futimes(atime, mtime, fd);
     OUTPUT:
 	RETVAL

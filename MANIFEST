@@ -12,3 +12,4 @@ t/fields.t
 t/object.t
 t/statcache.t
 t/underscore.t
+t/utimes.t

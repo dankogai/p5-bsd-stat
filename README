@@ -1,5 +1,5 @@
 #
-# $Id: README,v 1.20 2002/01/26 04:17:06 dankogai Exp $
+# $Id: README,v 1.22 2012/08/19 15:46:15 dankogai Exp dankogai $
 #
 
 BSD/stat
@@ -26,7 +26,7 @@ BSD/OS and|or MacOS X.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2001 Dan Kogai
+Copyright (C) 2001-2012 Dan Kogai
 
 This library is free software; you can redistribute it
 and/or modify it under the same terms as Perl itself.

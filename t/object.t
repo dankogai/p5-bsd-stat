@@ -1,5 +1,5 @@
 #
-# $Id: object.t,v 1.20 2002/01/26 04:17:06 dankogai Exp $
+# $Id: object.t,v 1.21 2012/08/19 13:29:26 dankogai Exp $
 #
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
