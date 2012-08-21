@@ -1,4 +1,4 @@
-#$Id: stat.pm,v 1.31 2012/08/19 15:46:15 dankogai Exp dankogai $
+#$Id: stat.pm,v 1.33 2012/08/21 10:06:12 dankogai Exp dankogai $
 
 package BSD::stat;
 
@@ -13,7 +13,7 @@ use AutoLoader;
 
 use vars qw($VERSION $DEBUG);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.31 $ =~ /(\d+)/g;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.33 $ =~ /(\d+)/g;
 
 # In favor of speed, especially when $st_ series variables are exported,
 # Exporter is no longer used, though EXPORT variables are still used
@@ -108,12 +108,16 @@ while (my ($method, $index) = each %{$field}){
     *$method = sub{ $_[0]->[$index] };
 }
 
+sub atimespec { $_[0]->[8] + $_[0]->[13] / 1e9 }
+sub mtimespec { $_[0]->[9] + $_[0]->[14] / 1e9 }
+sub ctimespec { $_[0]->[10] + $_[0]->[15] / 1e9 }
+
 # "my" subroutine which is invisible from other package
 
 my $set_our_st = sub 
 {
     no strict 'vars';
-    local $^W = 0;
+    no warnings 'uninitialized';
     ( 
       $st_dev, $st_ino, $st_mode, $st_nlink, $st_uid, $st_gid, $st_rdev, 
       $st_size, $st_atime, $st_mtime, $st_ctime, $st_blksize, $st_blocks,
@@ -248,7 +252,8 @@ BSD::stat - stat() with BSD 4.4 extentions
 
   chflags(UF_IMMUTABLE, @files)
 
-  # utimes, lutimes
+  # utimes and lutimes
+
   my $when = 1234567890.987654;
   utimes $when, $when, @files;
   lutimes $when, $when, @links;
@@ -288,6 +293,12 @@ cache" so the following -x _ operators can benefit.  Be careful,
 however, that BSD::stat::stat(_) will not work (or cannot be made to
 work) because BSD::stat::stat() holds more info than that is stored in
 Perl's internal stat cache.
+
+C<atimespec>, C<mtimespec>, C<ctimespec> are available only as methods
+that return times in floating point.
+
+  my $st = stat($path);
+  printf "%f\n" $st->atimespec; # $st->atime + $st->atimensec / 1e9
 
 =head2 BSD::stat vs File::stat
 
@@ -337,7 +348,9 @@ to unset all flags, simply
 
   chflags 0, @files;
 
-=head1 utimes and lutimes
+=head2 utimes and lutimes
+
+C<utimes()> and C<lutimes()) are introduced in version 1.30.
 
 C<utimes()> is identical to C<utime()> except fractional time is accepted.
 
@@ -419,7 +432,7 @@ Dan Kogai E<lt>dankogai@dan.co.jpE<gt>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2001-2009 Dan Kogai, all rights reserved.
+Copyright 2001-2012 Dan Kogai, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

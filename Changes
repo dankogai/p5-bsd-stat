@@ -1,8 +1,19 @@
 #
-# $Id: Changes,v 1.31 2012/08/19 15:46:15 dankogai Exp dankogai $
+# $Id: Changes,v 1.33 2012/08/21 10:06:12 dankogai Exp dankogai $
 #
 # Revision history for Perl extension BSD::stat.
-$Revision: 1.31 $ $Date: 2012/08/19 15:46:15 $
+$Revision: 1.33 $ $Date: 2012/08/21 10:06:12 $
+! stat.pm
+  * POD Fixes
+! t/chflags.t
+  skips where chflags() is not supported, like ZFS
+
+1.32 2012/08/21 09:34:47
+! stat.pm
+  * added atimespec, mtimespec, and ctimespec
+  * POD fixes
+
+1.31 2012/08/19 15:46:15
 ! stat.pm README
   Document fixes
 
