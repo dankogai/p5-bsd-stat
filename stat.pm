@@ -1,4 +1,4 @@
-#$Id: stat.pm,v 1.33 2012/08/21 10:06:12 dankogai Exp dankogai $
+#$Id: stat.pm,v 1.34 2012/10/23 03:36:50 dankogai Exp dankogai $
 
 package BSD::stat;
 
@@ -13,7 +13,7 @@ use AutoLoader;
 
 use vars qw($VERSION $DEBUG);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.33 $ =~ /(\d+)/g;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.34 $ =~ /(\d+)/g;
 
 # In favor of speed, especially when $st_ series variables are exported,
 # Exporter is no longer used, though EXPORT variables are still used

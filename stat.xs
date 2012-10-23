@@ -1,5 +1,5 @@
 /*
- * $Id: stat.xs,v 1.30 2012/08/19 15:36:31 dankogai Exp $
+ * $Id: stat.xs,v 1.31 2012/10/23 03:36:24 dankogai Exp dankogai $
  */
 
 #include "EXTERN.h"
@@ -7,8 +7,9 @@
 #include "XSUB.h"
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 #include <sys/time.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 /*
  * Perl prior to 5.6.0 lacks newSVuv()
@@ -137,12 +138,21 @@ xs_utimes(double atime, double mtime, char *path){
 
 static int
 xs_lutimes(double atime, double mtime, char *path){
+#ifdef __OpenBSD__
+    struct timespec times[2];
+    times[0].tv_sec = (int)atime;
+    times[0].tv_nsec = (int)((atime - times[0].tv_sec) * 1e9);
+    times[1].tv_sec = (int)mtime;
+    times[1].tv_nsec = (int)((mtime - times[1].tv_sec) * 1e9);
+    int err = utimensat(AT_FDCWD, path, times, AT_SYMLINK_NOFOLLOW);
+#else
     struct timeval times[2];
     times[0].tv_sec = (int)atime;
     times[0].tv_usec = (int)((atime - times[0].tv_sec) * 1e6);
     times[1].tv_sec = (int)mtime;
     times[1].tv_usec = (int)((mtime - times[1].tv_sec) * 1e6);
     int err = lutimes(path, times);
+#endif
     return setbang(err);
 }
 
