@@ -1,4 +1,4 @@
-#$Id: stat.pm,v 1.34 2012/10/23 03:36:50 dankogai Exp dankogai $
+#$Id: stat.pm,v 1.35 2014/01/06 16:36:48 dankogai Exp dankogai $
 
 package BSD::stat;
 
@@ -13,7 +13,7 @@ use AutoLoader;
 
 use vars qw($VERSION $DEBUG);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.34 $ =~ /(\d+)/g;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.35 $ =~ /(\d+)/g;
 
 # In favor of speed, especially when $st_ series variables are exported,
 # Exporter is no longer used, though EXPORT variables are still used
@@ -79,6 +79,10 @@ sub import{
 }
 
 bootstrap BSD::stat $VERSION; # make XS available;
+
+# Looks like as of Perl 5.18.1 the stat cache must be filled
+# before BSD::stat makes use of it
+CORE::lstat(__FILE__);
 
 my $field = {
     dev       =>  0,

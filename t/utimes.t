@@ -1,5 +1,5 @@
 #
-# $Id: utimes.t,v 1.31 2012/10/23 03:36:24 dankogai Exp dankogai $
+# $Id: utimes.t,v 1.31 2012/10/23 03:36:24 dankogai Exp $
 #
 
 use strict;
