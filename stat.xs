@@ -1,5 +1,5 @@
 /*
- * $Id: stat.xs,v 1.31 2012/10/23 03:36:24 dankogai Exp $
+ * $Id: stat.xs,v 1.32 2024/06/22 22:28:18 dankogai Exp dankogai $
  */
 
 #include "EXTERN.h"
